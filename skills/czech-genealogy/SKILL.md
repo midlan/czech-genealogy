@@ -46,12 +46,37 @@ Adresát (matriční úřad místa události) – **Věc:** Žádost o vydání 
 
 ## Pracovní postup
 1. Ze známých údajů urči další krok: nejdřív **narození** osoby (uvede rodiče, prarodiče, často datum sňatku rodičů), pak **sňatek rodičů** (uvede data narození a rodiče snoubenců).
-2. Pokud uživatel může procházet archiv v prohlížeči (např. Claude Code s Chromem), připrav mu **prompt pro prohlížecího agenta** (šablona níže). Na procházení stačí rychlejší model; čtení rukopisu ověř sám.
-3. **Validuj každý obrázek sám:** přečti originál, porovnej s přepisem agenta, oprav chyby (časté: povolání, jména obcí, svědci, roky v poznámkách) a výslovně je uživateli uveď.
+2. Hledání v digitálních archivech deleguj na **čtecí subagenty** (viz Orchestrace). Pokud subagenty spouštět nemůžeš (např. v chatu bez přístupu k prohlížeči), připrav uživateli **prompt pro prohlížecího agenta** (šablona níže), který spustí sám.
+3. **Validuj každý obrázek sám:** přečti originál, porovnej s přepisem čtecího agenta, oprav chyby (časté: povolání, jména obcí, svědci, roky v poznámkách) a výslovně je uživateli uveď.
 4. Doplň do rodokmenu (viz Gramps) a pošli soubor.
 5. Navrhni další kolo: kde je strom nejkratší a co je online dosažitelné; co vyžaduje žádost (matrika, SOkA, VÚA) a odhad ceny.
 
-### Šablona promptu pro prohlížecího agenta
+## Orchestrace: hlavní agent + čtecí subagenti (Claude Code s Chromem)
+Cíl: uživatel nemusí ručně přenášet zadání a výsledky mezi modely.
+
+**Role**
+- **Hlavní agent = silnější model (Opus).** Plánuje úlohy, píše zadání subagentům, **kontroluje veškerou jejich práci**, čte rukopis, rozhoduje o totožnosti osob, komunikuje s uživatelem a jako jediný zapisuje do rodokmenu.
+- **Čtecí subagent = levnější model (Sonnet).** Prochází archivy v Chromu, listuje knihami, stahuje originály a dělá *předběžný* přepis. Do rodokmenu nikdy nezapisuje, nic neobjednává ani neodesílá, nezadává hesla.
+
+**Spuštění**
+- Předpoklad: Claude Code s propojeným Chromem (`claude --chrome` nebo `/chrome`), uživatel je v archivech přihlášený sám.
+- Subagenta spouštěj nástrojem Agent s `model: "sonnet"`, případně s předdefinovaným agentem `archive-reader` (soubor `agents/archive-reader.md` v tomto repozitáři). Zadání piš podle šablony níže.
+- Výstupy si určí hlavní agent: subagent ukládá obrázky do pracovní složky (např. `rodokmen/nalezy/`) pod přesnými názvy ze zadání a vrací strukturovaný report (přepis + citace + co neprošel).
+
+**Paralelní běh**
+- Paralelně spouštěj nejvýš **2–3 subagenty**, každého s jiným archivem nebo jinou knihou. Každý pracuje **ve vlastní nové záložce** a sahá jen na svou záložku.
+- Všichni sdílejí jedno rozšíření a jeden prohlížeč; souběh není zaručeně stabilní (záložky se mohou přepínat, archivy mohou omezovat počet požadavků). Pokud se objeví chyby, zasekávání nebo se agenti přetahují o záložky, **přepni na sekvenční běh**.
+- Úlohy, které na sobě závisí (např. sňatek rodičů až po nalezení narození), dávej jednomu subagentovi postupně.
+
+**Kontrola práce subagenta (povinná, vždy)**
+1. Otevři každý stažený obrázek a přečti zápis sám; přepis subagenta ber jen jako vodítko.
+2. Zkontroluj citaci (kniha, snímek, strana, URL) a že obrázek odpovídá citaci.
+3. Ověř logiku: data, věk, čísla domů, shoda s už doloženými údaji, poznámky na okraji potvrzující totožnost.
+4. Projdi, co subagent **neprošel** (vynechané knihy, jen horní zápisy, jen index) – při mezerách zadej doplňující úlohu.
+5. Uživateli shrň nálezy a výslovně uveď, co jsi oproti subagentovi opravil.
+6. Teprve potom zapiš do rodokmenu.
+
+### Šablona zadání pro čtecího agenta
 ```
 Piš ČESKY. PRAVIDLA: jen prohlížej, nezadávej hesla, nic neobjednávej;
 zaseknutou záložku nahraď novou; každý nález ulož jako ORIGINÁLNÍ obrázek

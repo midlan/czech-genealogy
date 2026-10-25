@@ -10,7 +10,7 @@ Skill pro [Claude](https://claude.ai), který pomáhá s **genealogickým výzku
 - **Archivy:** kde hledat a jak fungují prohlížeče – SOA Praha (eBadatelna), SOA Třeboň (DigiArchiv), Litoměřice, Zámrsk, Plzeň (Porta fontium), Opava, Brno (Actapublica), SOkA, slovenské matriky na FamilySearch.
 - **Vojenské prameny:** Databáze legionářů VÚA–VHA, legionářské osobní spisy, žádost přes PDF formulář, co znamenají kódy na kartách.
 - **Čtení zápisů:** poznámky na okraji (sňatky, přestupy mezi církvemi, legitimace), nemanželské děti, dobové názvy míst a povolání, typické chyby v přepisech.
-- **Pracovní postup:** šablona promptu pro prohlížecího agenta (např. Claude Code s Chromem), který prochází digitalizované matriky a stahuje originály; následná kontrola každého zápisu.
+- **Orchestrace agentů:** hlavní agent (silnější model, Opus) plánuje a kontroluje, čtecí subagenti (levnější model, Sonnet) v Chromu procházejí digitalizované matriky a stahují originály. Hlavní agent každý zápis znovu přečte a ověří, než ho zapíše do rodokmenu.
 - **Gramps:** doplňování nových údajů do exportu ve formátu Gramps XML (`.gramps`) s citacemi zdrojů, validace proti DTD, rodné a vdané jméno, osvojení, nemanželské děti.
 
 ## Instalace
@@ -21,12 +21,15 @@ Skill pro [Claude](https://claude.ai), který pomáhá s **genealogickým výzku
 3. V nastavení Claude v sekci se skilly nahrajte ZIP jako nový skill.
 
 ### Claude Code
-Zkopírujte složku do adresáře se skilly:
+Zkopírujte skill a čtecího agenta:
 
 ```bash
 git clone https://github.com/midlan/czech-genealogy.git
 cp -r czech-genealogy/skills/czech-genealogy ~/.claude/skills/
+mkdir -p ~/.claude/agents && cp czech-genealogy/agents/archive-reader.md ~/.claude/agents/
 ```
+
+Pro práci s archivy spusťte Claude Code s propojeným Chromem (`claude --chrome` nebo příkaz `/chrome`), jako hlavní model zvolte Opus (`/model`) a v archivech se přihlaste sami. Čtecí subagenti běží na modelu Sonnet. Paralelně doporučujeme nejvýš 2–3 subagenty, každý ve vlastní záložce; při potížích přepněte na sekvenční běh.
 
 ## Použití
 
@@ -42,7 +45,9 @@ Stačí začít mluvit o rodokmenu, matrikách nebo předcích, např.:
 ```
 skills/
 └── czech-genealogy/
-    └── SKILL.md
+    └── SKILL.md          # skill pro hlavního agenta
+agents/
+└── archive-reader.md     # čtecí subagent (Sonnet) pro procházení archivů
 ```
 
 ## Upozornění
