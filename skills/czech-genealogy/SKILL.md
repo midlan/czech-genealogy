@@ -11,6 +11,7 @@ Postup pro sestavování rodokmenu z českých (a slovenských) pramenů. S uži
 - Když se ptáš na chybějící nebo nejasný údaj, vždy uveď **celé jméno osoby a její vztah k uživateli** (např. „Marie Houdková, matka tvého pradědy Jana, neboli praprababička“) a **nápovědu, kde údaj hledat** (konkrétní kniha, snímek, rubrika, doklad v rodině).
 - Odlišuj, co je **doloženo zápisem**, co je **rodinné podání** a co je **hypotéza**. Hypotézy nikdy nezapisuj jako fakt.
 - Nejistá čtení označuj `[nejisté]` a uváděj varianty.
+- **Nikdy nesestavuj odkaz podle vzoru.** Do citací dávej jen adresy, které byly skutečně načteny; když nejde ověřit, uveď místo odkazu vyhledávací dotaz.
 - Rodná čísla do rodokmenu nezapisuj (osobní identifikátor, pro rodokmen zbytečný).
 
 ## Matriky – právní rámec (zákon č. 301/2000 Sb.)
@@ -26,23 +27,35 @@ Postup pro sestavování rodokmenu z českých (a slovenských) pramenů. S uži
 Adresát (matriční úřad místa události) – **Věc:** Žádost o vydání doslovného výpisu z knihy narození/manželství – „podle § 25 zákona č. 301/2000 Sb. žádám jako potomek (vnuk/pravnuk) o vydání doslovného výpisu…“ – údaje osoby (jméno, datum a místo, rodiče) – „Výpis může být pořízen i kopií matričního zápisu.“ – přílohy dokládající příbuznost – doručení do datové schránky / e-mailem, jinak poštou – souhlas s úhradou poplatku – žadatel.
 
 ## Archivy a portály
-- **SOA Praha – eBadatelna** (ebadatelna.soapraha.cz): Středočeský kraj. Hledá se podle lokality/farnosti, ne podle jména. Velké farnosti mají zvláštní knihy přifařených vesnic (např. Čejetičky + Neuberk). Originály lze stáhnout přímou adresou obrázku.
-- **SOA Třeboň – DigiArchiv** (digi.ceskearchivy.cz): jižní Čechy. Bez přihlášení nejde přiblížit ani exportovat; po registraci export ikonou diskety.
-- **SOA Litoměřice** (sever, Turnovsko), **SOA Zámrsk** (východ), **SOA Plzeň – Porta fontium**, **Zemský archiv Opava** (Slezsko, Valašsko, Ostravsko), **MZA Brno – Actapublica**.
+Podrobné postupy pro jednotlivé prohlížeče (hledání knih, stahování originálů, zasekávání) jsou v definici čtecího agenta `archive-reader`. Ověřená přiřazení obcí k farnostem a knihám: [`references/farnosti.md`](references/farnosti.md).
+
+- **SOA Praha – eBadatelna** (ebadatelna.soapraha.cz): Středočeský kraj. Hledá se podle lokality/farnosti (v poli lokality je nutné kliknout na návrh), ne podle jména. Velké farnosti mají zvláštní knihy přifařených vesnic. Indexy jsou samostatné knihy (sloupce Index N/O/Z). Snímek knihy: `/d/<ID knihy>/<snímek>`; originál lze stáhnout přímou adresou obrázku.
+- **SOA Třeboň – DigiArchiv** (digi.ceskearchivy.cz): jižní Čechy. Bez přihlášení nejde přiblížit ani exportovat; po přihlášení uživatele export ikonou diskety. Obrázky nejdou stáhnout přímou adresou.
+- **SOA Litoměřice** (sever, Turnovsko; e-badatelna přes soalitomerice.cz, občas odstávky), **SOA Zámrsk** (východ), **SOA Plzeň – Porta fontium**, **Zemský archiv Opava** (Slezsko, Valašsko, Ostravsko), **MZA Brno – Actapublica**.
 - **Slovensko:** starší církevní matriky zdarma na FamilySearch; novější na matrikách.
 - **SOkA:** evidence obyvatel, domovské a občanské spisy, farní archivy se svatebními spisy (prohlášení o křtu apod.). Sazebník SOA Praha: rešerše 300 Kč/h, sken 25 Kč; osobní studium v badatelně zdarma.
-- **VÚA–VHA:** Databáze legionářů (`vuapraha.cz/legionari/<číslo>`); karty mohou obsahovat chyby (často rok narození). Legionářské osobní spisy jsou online jen pro příjmení A–E; ostatní na žádost **výhradně přes PDF formulář z webu VÚA** (vyplnitelné PDF, ne sken), povinné jméno, datum a místo narození; poslat na podatelna-vua@mo.gov.cz. Platí se jen kopie (sken 25 Kč). Kmenové listy ročníků 1887–1900 jsou skartovány. Kód D = dezerce; „Není legionářem podle zák. 462/1919“ = nedosloužil (často zůstal v Rusku).
-- **Kramerius** (digitalniknihovna.cz, Česká digitální knihovna): fulltext starých novin.
+- **VÚA–VHA:**
+  - Databáze legionářů (`vuapraha.cz/legionari/<ID>`); ID jsou abecedně sousední (stejné příjmení = ID ±5). Karta uvádí narození, bydliště, útvary, zajetí, kód, poznámku a prameny, **ne rodiče ani domovskou obec** – ty jsou až ve spise. Karty mohou obsahovat chyby (často rok narození). Kód D = dezerce; „Není legionářem podle zák. 462/1919“ = nedosloužil (často zůstal v Rusku).
+  - Digitální badatelna (`vuapraha.cz/badatelna`): hledání jen v názvech, podřetězcově a bez diakritiky. Legionářské osobní spisy (Kancelář čs. legií) online jen pro příjmení A–E.
+  - Spisy na žádost: archiv přijímá **jen svůj PDF formulář z webu VÚA, vyplněný přímo v PDF** (ne sken), povinné jméno, datum a místo narození hledané osoby; poslat na podatelna-vua@mo.gov.cz. Platí se jen kopie (sken 25 Kč), max. 20 stran. Kmenové listy ročníků 1887–1900 jsou skartovány.
+- **Kramerius** (Česká digitální knihovna): fulltext starých novin. Ověř, že stránka je veřejně přístupná; neveřejné stránky ukážou jen úryvek.
 - **MyHeritage / FamilySearch stromy:** jen vodítka; správcům stromů lze psát zdarma.
 
 ## Čtení zápisů – na co si dát pozor
-- Kurent, latina, němčina, farářské zkratky. „Cop.“ = sňatek, „†“ = zemřelý, „proles legitimata per subsequens matrimonium“ = legitimováno sňatkem rodičů.
+- Kurent, latina, němčina, farářské zkratky. „Cop.“ = sňatek, „†“ = zemřelý, „proles legitimata per subsequens matrimonium (die …)“ = nemanželské dítě legitimováno sňatkem rodičů (datum = datum sňatku). V latinských knihách *Levans* = kmotr(a), *Testis* = svědek.
 - **Poznámky na okraji** jsou zlatý důl: pozdější sňatek (s datem → potvrzení totožnosti), vystoupení z církve / přestup k Církvi československé (vlny 1920–1921, 1925), návrat do církve, úmrtí.
-- „Dcera Marie, dcery Jana X“ bez otce = nemanželské dítě; uvedení „rodiče“ jsou ve skutečnosti prarodiče.
+  - „Cop. <místo> <datum>“ **pod údaji o rodičích** (u narození z 80.–90. let 19. st.) = sňatek **rodičů** – použij dřív, než začneš prohledávat knihy sňatků.
+  - „Cop. …“ na **levém okraji** = sňatek **dítěte**.
+  - Poznámka může patřit k předchozímu zápisu – ověř, pod kterou čarou leží. Jiným inkoustem dopsané údaje ber jako samostatnou pozdější informaci.
+- Matka je v zápisu psána příjmením po manželovi; rodné příjmení je v „dcera X“ / „rozená Y“. Nezaměňuj dítě, matku a nevěstu.
+- „Dcera Marie, dcery Jana X“ bez otce = nemanželské dítě; uvedení „rodiče“ jsou ve skutečnosti prarodiče. Otec se může „přihlásit“ (podpis se svědky).
 - Příjmení vdovy: „Čapková roz. Žimová“ = Čapková po prvním muži.
+- Varianty příjmení i v jednom zápisu (Landr/Lander, Brejla/Breyla, Štohr/Štor) – hledej všechny.
 - „Skadlec/tkadlec“ = tkadlec; dobové tvary míst (Hradiště = Mnichovo Hradiště).
+- Měsíc bývá uveden jen u prvního zápisu bloku; datum vždy ověř v samotném zápisu, ne jen v hlavičce nebo indexu. Narození bývá 0–3 dny před křtem.
+- **Indexy:** řazené podle počátečního písmene, uvnitř písmene chronologicky (projdi celý oddíl písmene). Index sňatků obvykle vede ženicha. Rok v indexu občas nesouhlasí se zápisem.
+- Číslo strany/folia v indexu se liší od čísla snímku o malou konstantu pro danou knihu (typicky +2 až +4); po prvním zásahu ji zapiš a používej.
 - Den a měsíc souhlasí, rok ne → u zajateckých/legionářských karet běžná chyba; ověř v matrikách, zda existuje alternativní osoba.
-- Číslo v indexu ≠ číslo snímku; vždy ověř v knize.
 
 ## Pracovní postup
 1. Ze známých údajů urči další krok: nejdřív **narození** osoby (uvede rodiče, prarodiče, často datum sňatku rodičů), pak **sňatek rodičů** (uvede data narození a rodiče snoubenců).
@@ -50,6 +63,10 @@ Adresát (matriční úřad místa události) – **Věc:** Žádost o vydání 
 3. **Validuj každý obrázek sám:** přečti originál, porovnej s přepisem čtecího agenta, oprav chyby (časté: povolání, jména obcí, svědci, roky v poznámkách) a výslovně je uživateli uveď.
 4. Doplň do rodokmenu (viz Gramps) a pošli soubor.
 5. Navrhni další kolo: kde je strom nejkratší a co je online dosažitelné; co vyžaduje žádost (matrika, SOkA, VÚA) a odhad ceny.
+
+**Kde hledat sňatek:** obvykle ve farnosti nevěsty, ale často i v knize obce ženicha nebo v knize přifařené vesnice – prověř obě. Nejrychlejší je poznámka „Cop.“ v rodném zápisu dítěte.
+
+**Knihy bez indexu:** hledej interpolací – v jedné dávce otevři 3–4 snímky rozložené po knize, z hlaviček zjisti měsíc a rok a zpřesňuj (venkovská farnost ≈ 9 snímků/rok, město ≈ 3–4 snímky/měsíc); pak čti celé stránky kolem cíle.
 
 ## Orchestrace: hlavní agent + čtecí subagenti (Claude Code s Chromem)
 Cíl: uživatel nemusí ručně přenášet zadání a výsledky mezi modely.
@@ -60,8 +77,9 @@ Cíl: uživatel nemusí ručně přenášet zadání a výsledky mezi modely.
 
 **Spuštění**
 - Předpoklad: Claude Code s propojeným Chromem (`claude --chrome` nebo `/chrome`), uživatel je v archivech přihlášený sám.
-- Subagenta spouštěj nástrojem Agent s `model: "sonnet"`, případně s předdefinovaným agentem `archive-reader` (soubor `agents/archive-reader.md` v tomto repozitáři). Zadání piš podle šablony níže.
-- Výstupy si určí hlavní agent: subagent ukládá obrázky do pracovní složky (např. `rodokmen/nalezy/`) pod přesnými názvy ze zadání a vrací strukturovaný report (přepis + citace + co neprošel).
+- Subagenta spouštěj nástrojem Agent s `model: "sonnet"`, nejlépe jako předdefinovaného agenta `archive-reader` (soubor `agents/archive-reader.md` v tomto repozitáři).
+- Čtecí agent potřebuje kromě Chromu i shell (curl, ořez a zvětšení obrázků) a čtení obrázků – v zadání to výslovně povol.
+- Výstupy si určí hlavní agent: subagent ukládá obrázky do pracovní složky (např. `rodokmen/nalezy/`) pod přesnými názvy ze zadání, přepis průběžně zapisuje do pracovního souboru a vrací strukturovaný report.
 
 **Paralelní běh**
 - Paralelně spouštěj nejvýš **2–3 subagenty**, každého s jiným archivem nebo jinou knihou. Každý pracuje **ve vlastní nové záložce** a sahá jen na svou záložku.
@@ -72,7 +90,7 @@ Cíl: uživatel nemusí ručně přenášet zadání a výsledky mezi modely.
 1. Otevři každý stažený obrázek a přečti zápis sám; přepis subagenta ber jen jako vodítko.
 2. Zkontroluj citaci (kniha, snímek, strana, URL) a že obrázek odpovídá citaci.
 3. Ověř logiku: data, věk, čísla domů, shoda s už doloženými údaji, poznámky na okraji potvrzující totožnost.
-4. Projdi, co subagent **neprošel** (vynechané knihy, jen horní zápisy, jen index) – při mezerách zadej doplňující úlohu.
+4. Projdi, co subagent **neprošel**. **Negativní nález platí jen pro přečtený rozsah:** „nenalezeno v indexu“ nebo „jen horní zápisy“ neznamená „v knize není“ – zadej doplňující čtení celých stránek nebo jiné místo (jiná farnost, kniha ženichovy obce, matrika).
 5. Uživateli shrň nálezy a výslovně uveď, co jsi oproti subagentovi opravil.
 6. Teprve potom zapiš do rodokmenu.
 
@@ -84,12 +102,21 @@ celé dvoustrany pod uvedeným názvem; nejisté údaje označ [nejisté]
 s variantami; odlišuj přepis od výkladu; čti CELÉ stránky, ne jen horní
 zápis; u nálezu zkontroluj stranu před a po a v indexu vypiš všechny
 zápisy se stejným příjmením; po 2–3 neúspěšných pokusech úlohu popiš
-a jdi dál.
-CO VÍME: <kontext osob, data, místa, varianty příjmení>
-ÚLOHY: <očíslované, s archivem, farností/knihou, roky a názvem souboru>
-VÝSTUP: u každé úlohy co prošel, co nenašel, úplný přepis (dítě/snoubenci,
-rodiče, prarodiče, povolání, bydliště, původ, kmotři/svědci, poznámky)
-a citace (archiv, signatura, snímek, strana, URL); souhrnná tabulka.
+a jdi dál. Smíš používat shell (curl, ořez obrázků) a čtení obrázků.
+PŘIHLÁŠENÍ: <v kterých archivech je uživatel přihlášený (např. Třeboň)>
+UKLÁDÁNÍ: <složka, podsložka pro vedlejší soubory, pracovní soubor s přepisy>
+CO VÍME: <kontext osob, data, místa, čp., varianty příjmení,
+  jména rodičů pro ověření totožnosti (aspoň 2 shodné údaje)>
+UŽ PROVĚŘENO: <kniha, rozsah, výsledek – neopakovat>
+ÚLOHY: <očíslované: archiv, farnost/kniha (ID, pokud je známé), známý posun
+  folio↔snímek, přesné datum nebo rozsah let, rozsah k přečtení celý,
+  limit snímků, název souboru>
+VÝSTUP: u každé úlohy rozsah přečtených snímků a způsob čtení (celé
+stránky / index), ID knihy, posun folio↔snímek; úplný přepis (dítě/
+snoubenci, rodiče, prarodiče, povolání, bydliště, původ, kmotři/svědci,
+poznámky „Cop.“, přestupy, úmrtí) s pozicí na stránce; rozpory se
+zadáním; citace (archiv, signatura, snímek, strana, URL); u negativního
+výsledku návrh dalšího místa; souhrnná tabulka; seznam vedlejších souborů.
 ```
 
 ## Gramps

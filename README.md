@@ -45,7 +45,9 @@ Stačí začít mluvit o rodokmenu, matrikách nebo předcích, např.:
 ```
 skills/
 └── czech-genealogy/
-    └── SKILL.md          # skill pro hlavního agenta
+    ├── SKILL.md          # skill pro hlavního agenta
+    └── references/
+        └── farnosti.md   # ověřená přiřazení obcí k farnostem a knihám
 agents/
 └── archive-reader.md     # čtecí subagent (Sonnet) pro procházení archivů
 ```
