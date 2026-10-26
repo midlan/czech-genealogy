@@ -158,7 +158,10 @@ výsledku návrh dalšího místa; souhrnná tabulka; seznam vedlejších soubor
   - `1953-05-13_N_Malinovsky-Karel_MatrikaMB-N5-str214.jpg`
   - `1974-12-18_RL_Davidek-Robert_rodinny-archiv.jpg`
   - Typ: `N` narození, `O` oddaní, `Z` zemřelí, `RL` rodný list, `DV` doslovný výpis, `VUA` vojenský archiv, `DOK` jiný dokument. Datum = datum události; u sňatku obě příjmení.
-  - Název určuje **událost, kvůli které se sken stahoval**. Je-li na stejné dvoustraně další příbuzný, soubor se nekopíruje – v Gramps na něj odkáže další citace.
+  - **Jeden soubor = jedna událost.** Je-li na stejné dvoustraně další zápis, vytvoř **kopii** pojmenovanou podle té události (celá dvoustrana, žádný výřez). Kopie mají stejnou koncovku zdroje, takže při řazení leží vedle sebe.
+  - **Jednou vytvořený název se nikdy nemění** – Gramps odkazuje cestou a přejmenování by rozbilo odkazy. Nový nález = nová kopie.
+  - **Originály nikdy neupravuj** (ořez, otočení, kontrast); výřezy dělej v Gramps jako region.
+  - Totožné kopie se poznají podle **kontrolního součtu** (např. `sha256sum`, PowerShell `Get-FileHash`). Použij ho ke zjištění, zda už sken máš (před stažením/kopírováním), k seskupení kopií téhož snímku a ke kontrole, že se originál nezměnil.
   - Metadata do EXIF nepiš; autoritou pro to, kdo je na snímku, je Gramps.
 - Médium připoj **k citaci**; volitelně i **k osobě s výřezem** (region) jejího zápisu.
 - Archivy povolují kopie zpravidla jen pro soukromé studium – strom s obrázky nezveřejňuj (např. veřejný Gramps Web). Pro zálohu nebo přenos i s obrázky lze vytvořit **Gramps XML Package (`.gpkg`)**.
