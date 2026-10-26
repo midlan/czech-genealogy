@@ -157,7 +157,7 @@ výsledku návrh dalšího místa; souhrnná tabulka; seznam vedlejších soubor
   - `1881-09-12_N_Malinovsky-Karel_SOATrebon-Milevsko16-s057.jpg`
   - `1953-05-13_N_Malinovsky-Karel_MatrikaMB-N5-str214.jpg`
   - `1974-12-18_RL_Davidek-Robert_rodinny-archiv.jpg`
-  - Typ: `N` narození, `O` oddaní, `Z` zemřelí, `RL` rodný list, `DV` doslovný výpis, `VUA` vojenský archiv, `DOK` jiný dokument. Datum = datum události; u sňatku obě příjmení.
+  - Typ: `N` narození, `O` oddaní, `Z` zemřelí, `RL` rodný list, `DV` doslovný výpis, `OSV` osvojení (dodatečný zápis), `VUA` vojenský archiv, `DOK` jiný dokument. Datum = datum události; u sňatku obě příjmení.
   - **Jeden soubor = jedna událost.** Je-li na stejné dvoustraně další zápis, vytvoř **kopii** pojmenovanou podle té události (celá dvoustrana, žádný výřez). Kopie mají stejnou koncovku zdroje, takže při řazení leží vedle sebe.
   - **Jednou vytvořený název se nikdy nemění** – Gramps odkazuje cestou a přejmenování by rozbilo odkazy. Nový nález = nová kopie.
   - **Originály nikdy neupravuj** (ořez, otočení, kontrast); výřezy dělej v Gramps jako region.
