@@ -11,6 +11,7 @@ Skill pro [Claude](https://claude.ai), který pomáhá s **genealogickým výzku
 - **Vojenské prameny:** Databáze legionářů VÚA–VHA, legionářské osobní spisy, žádost přes PDF formulář, co znamenají kódy na kartách.
 - **Čtení zápisů:** poznámky na okraji (sňatky, přestupy mezi církvemi, legitimace), nemanželské děti, dobové názvy míst a povolání, typické chyby v přepisech.
 - **Orchestrace agentů:** hlavní agent (silnější model, Opus) plánuje a kontroluje, čtecí subagenti (levnější model, Sonnet) v Chromu procházejí digitalizované matriky a stahují originály. Hlavní agent každý zápis znovu přečte a ověří, než ho zapíše do rodokmenu.
+- **Souřadnice domů:** skript pro Mapy.com API dohledá souřadnice podle čísla popisného a ohlídá záměnu s čísly orientačními a místními částmi (API klíč zdarma na [developer.mapy.com](https://developer.mapy.com/account/projects)).
 - **Gramps:** doplňování nových údajů do exportu ve formátu Gramps XML (`.gramps`) s citacemi zdrojů, validace proti DTD, rodné a vdané jméno, osvojení, nemanželské děti.
 
 ## Instalace
@@ -50,8 +51,10 @@ Stačí začít mluvit o rodokmenu, matrikách nebo předcích, např.:
 skills/
 └── czech-genealogy/
     ├── SKILL.md          # skill pro hlavního agenta
-    └── references/
-        └── farnosti.md   # ověřená přiřazení obcí k farnostem a knihám
+    ├── references/
+    │   └── farnosti.md   # ověřená přiřazení obcí k farnostem a knihám
+    └── scripts/
+        └── souradnice_mapy.py  # souřadnice domů podle čp. přes Mapy.com API
 agents/
 └── archive-reader.md     # čtecí subagent (Sonnet) pro procházení archivů
 ```
