@@ -26,7 +26,7 @@ Zkopírujte skill a čtecího agenta:
 ```bash
 tmp=$(mktemp -d) && git -C "$tmp" clone https://github.com/midlan/czech-genealogy.git \
   && src=$(echo "$tmp"/*) \
-  && cp -r "$src/skills/czech-genealogy" ~/.claude/skills/ \
+  && mkdir -p ~/.claude/skills && cp -r "$src/skills/czech-genealogy" ~/.claude/skills/ \
   && mkdir -p ~/.claude/agents && cp "$src/agents/archive-reader.md" ~/.claude/agents/ \
   && rm -rf "$tmp"
 ```
