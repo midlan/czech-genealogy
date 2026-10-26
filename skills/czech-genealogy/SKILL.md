@@ -66,6 +66,10 @@ Podrobné postupy pro jednotlivé prohlížeče (hledání knih, stahování ori
 
 **Kde hledat sňatek:** obvykle ve farnosti nevěsty, ale často i v knize obce ženicha nebo v knize přifařené vesnice – prověř obě. Nejrychlejší je poznámka „Cop.“ v rodném zápisu dítěte.
 
+**Ohlášky:** četly se ve farnostech obou snoubenců – místa ohlášek prozradí, kam snoubenci patřili (stopa pro další hledání). Do Gramps je nezakládej jako samostatnou událost, uveď je v poznámce ke sňatku.
+
+**Sourozenci, kmotři, svědci:** sourozence předků nehledej plošně, ale **cíleně tam, kde se linie zasekla**, a jen na pokyn uživatele. Postup: v indexu narození projdi oddíl příjmení za ~25 let po sňatku rodičů a vyber zápisy se stejnými rodiči. Přínos: náhradní zápis místo chybějícího (datum sňatku rodičů, původ prarodičů), rozlišení stejnojmenných osob, kontakty na žijící příbuzné. Kmotři a svědci jsou nejlevnější vodítko k příbuzným (často strýcové a tety).
+
 **Knihy bez indexu:** hledej interpolací – v jedné dávce otevři 3–4 snímky rozložené po knize, z hlaviček zjisti měsíc a rok a zpřesňuj (venkovská farnost ≈ 9 snímků/rok, město ≈ 3–4 snímky/měsíc); pak čti celé stránky kolem cíle.
 
 ## Orchestrace: hlavní agent + čtecí subagenti (Claude Code s Chromem)
@@ -126,6 +130,39 @@ výsledku návrh dalšího místa; souhrnná tabulka; seznam vedlejších soubor
 - Datum: `dateval val="YYYY-MM-DD"`, `type="before"` / `"about"`, rozsah `daterange start/stop`.
 - Vztah dítěte: `childref` `frel`/`mrel` = Birth, Adopted, Stepchild…; osvojení jako druhá rodina + událost Adopted; hlavní rodiče = první `childof` (uživatel může přeřadit v zobrazení Vztahy → Seřadit).
 - Rodné a vdané jméno jako dvě jména (Birth Name + Married Name, `alt="1"`).
-- Každý údaj s citací zdroje (archiv, signatura, snímek/strana, URL); rodinné podání jako samostatný zdroj.
 - Před odesláním: validace proti DTD (`xmllint --dtdvalid grampsxml.dtd`, DTD z repozitáře gramps-project), kontrola duplicitních handle a neplatných odkazů.
-- Místa jako text „čp. X, Obec, okres Y, Stát (dobový)“.
+
+### Zdroje, repozitáře, citace
+- **Repozitář** = instituce, kde zdroj leží (SOA Praha, SOA Třeboň, matriční úřad Mladá Boleslav, VÚA–VHA, Rodinný archiv…). **Zdroj** = kniha/fond s odkazem na repozitář a **signaturou** (`reporef callno`, např. „Radošovice 13“). **Citace** = konkrétní stránka/snímek, URL a vazba na médium.
+- Každý údaj má citaci; rodinné podání je samostatný zdroj v repozitáři „Rodinný archiv / rodinné podání“.
+- **Spolehlivost citace** (Gramps confidence):
+  - **velmi vysoká** – jen genetické (DNA) testy,
+  - **vysoká** – matriční zápis, doslovný výpis, rodný list a jiný úřední doklad,
+  - **normální** – rodinné podání podané jako fakt; přepis zatím neověřený proti originálu,
+  - **nízká** – podání typu „možná to tak bylo“; nepřímé odvození (např. datum úmrtí dopočtené z věku),
+  - **velmi nízká** – hypotéza (např. ztotožnění s legionářskou kartou).
+
+### Štítky
+- `ověřeno` – údaj potvrzený originálem, `hypotéza` – nepotvrzené ztotožnění nebo výklad, `k dohledání` – známá mezera (chybí zápis, nečitelné příjmení). Štítky přiřazuj osobám, událostem i citacím; slouží uživateli jako filtr a seznam práce.
+
+### Místa
+- **Hierarchie:** stát (dobový název s rozsahem let, např. Rakousko-Uhersko / Československo / Česko) → kraj → okres (dobový) → obec → část obce → **číslo popisné** jako samostatné místo typu Building/House. Alternativní názvy (německé – Jungbunzlau, Wlaschim) jako další jména místa.
+- **Souřadnice pro domy:** dohledej podle čísla popisného na **mapy.com** („Obec čp. X“) nebo v RÚIAN. Historická čísla popisná se mohla přečíslovat nebo dům zanikl – pokud adresu nelze ztotožnit, dej souřadnice obce/části obce a do poznámky místa napiš, že jde jen o obec. Souřadnice obcí pro vyšší úrovně hierarchie.
+- Stejné místo zakládej jen jednou a odkazuj na něj (žádné duplikáty textových míst).
+
+### Média (skeny zápisů a dokladů)
+- `.gramps` obrázky neobsahuje, jen na ně odkazuje. Používej **relativní cesty** vůči základní cestě k médiím nastavené v Gramps (Předvolby), kterou uživatel nasměruje na složku se skeny.
+- **Pojmenování souborů:** `<datum>_<typ>_<příjmení>_<zdroj>.jpg`, jen ASCII bez diakritiky a mezer, např.
+  - `1872-01-30_O_Malinovsky-Kozelova_SOAPraha-Radosovice13-s050.jpg`
+  - `1881-09-12_N_Malinovsky-Karel_SOATrebon-Milevsko16-s057.jpg`
+  - `1953-05-13_N_Malinovsky-Karel_MatrikaMB-N5-str214.jpg`
+  - `1974-12-18_RL_Davidek-Robert_rodinny-archiv.jpg`
+  - Typ: `N` narození, `O` oddaní, `Z` zemřelí, `RL` rodný list, `DV` doslovný výpis, `VUA` vojenský archiv, `DOK` jiný dokument. Datum = datum události; u sňatku obě příjmení.
+  - Název určuje **událost, kvůli které se sken stahoval**. Je-li na stejné dvoustraně další příbuzný, soubor se nekopíruje – v Gramps na něj odkáže další citace.
+  - Metadata do EXIF nepiš; autoritou pro to, kdo je na snímku, je Gramps.
+- Médium připoj **k citaci**; volitelně i **k osobě s výřezem** (region) jejího zápisu.
+- Archivy povolují kopie zpravidla jen pro soukromé studium – strom s obrázky nezveřejňuj (např. veřejný Gramps Web). Pro zálohu nebo přenos i s obrázky lze vytvořit **Gramps XML Package (`.gpkg`)**.
+
+### Kmotři, svědci a další osoby ze zápisu
+- **Nezakládej je jako osoby** (výjimka: prokázaný příbuzný). Zapiš je do **poznámky události** ve strukturovaném tvaru, aby se daly později strojově vytěžit:
+  `Kmotři: Jméno Příjmení, stav/povolání, obec čp.; … | Svědci: … | Porodní bába: … | Oddávající/křtící: … | Ohlášky: data, farnosti`
