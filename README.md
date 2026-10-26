@@ -24,7 +24,7 @@ Skill pro [Claude](https://claude.ai), který pomáhá s **genealogickým výzku
 Zkopírujte skill a čtecího agenta:
 
 ```bash
-git clone https://github.com/midlan/czech-genealogy.git
+git clone https://github.com/midlan/czech-genealogy.git czech-genealogy
 cp -r czech-genealogy/skills/czech-genealogy ~/.claude/skills/
 mkdir -p ~/.claude/agents && cp czech-genealogy/agents/archive-reader.md ~/.claude/agents/
 ```
