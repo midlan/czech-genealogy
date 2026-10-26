@@ -24,10 +24,14 @@ Skill pro [Claude](https://claude.ai), který pomáhá s **genealogickým výzku
 Zkopírujte skill a čtecího agenta:
 
 ```bash
-git clone https://github.com/midlan/czech-genealogy.git czech-genealogy
-cp -r czech-genealogy/skills/czech-genealogy ~/.claude/skills/
-mkdir -p ~/.claude/agents && cp czech-genealogy/agents/archive-reader.md ~/.claude/agents/
+tmp=$(mktemp -d) && git -C "$tmp" clone https://github.com/midlan/czech-genealogy.git \
+  && src=$(echo "$tmp"/*) \
+  && cp -r "$src/skills/czech-genealogy" ~/.claude/skills/ \
+  && mkdir -p ~/.claude/agents && cp "$src/agents/archive-reader.md" ~/.claude/agents/ \
+  && rm -rf "$tmp"
 ```
+
+Repozitář se naklonuje do prázdné dočasné složky, takže příkaz funguje bez ohledu na to, jak git pojmenovává klonované složky. Po zkopírování se dočasná složka smaže.
 
 Pro práci s archivy spusťte Claude Code s propojeným Chromem (`claude --chrome` nebo příkaz `/chrome`), jako hlavní model zvolte Opus (`/model`) a v archivech se přihlaste sami. Čtecí subagenti běží na modelu Sonnet. Paralelně doporučujeme nejvýš 2–3 subagenty, každý ve vlastní záložce; při potížích přepněte na sekvenční běh.
 
