@@ -7,7 +7,8 @@ Obec často nemá vlastní knihu – hledej farnost a v tabulce knih sloupec „
 |---|---|---|
 | Bílkovice (u Vlašimi) | Radošovice – narození Radošovice 12, sňatky Radošovice 13; indexy Radošovice 17 (N), 18 (O) | |
 | Radošovice | Radošovice 05 (narození, 1850. léta), 12 (narození 1880. léta), 13 (sňatky) | |
-| Ovesné Rataje | Vlašim | index sňatků na konci knihy Vlašim 23 |
+| Rataje (okres Benešov) | Zdislavice | podle lokalit v eBadatelně; v matrice Radošovice 12 (1883) zapsáno jako „Ovesné Rataje“ – ztotožnění pravděpodobné, ne ověřené. (Dřívější údaj „Vlašim 23“ byl chybný.) |
+| Ostrov (u Veliše) | Veliš | podle eBadatelny se zde oddávaly nevěsty z Ostrova |
 | Brodce | Horky nad Jizerou – Horky 13 (narození 1859–1869), Horky 22 (sňatky 1875–1901) | |
 | Sloveč | Králův Městec – Městec Králové 20/21 (narození Sloveč 1839–1902), 25 (sňatky Sloveč + Střihov) | |
 | Vinice (u Králova Městce) | Králův Městec – Městec Králové 40 (sňatky jen Vinice 1877–1949) | |
