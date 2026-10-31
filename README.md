@@ -10,7 +10,8 @@ Skill pro [Claude](https://claude.ai), který pomáhá s **genealogickým výzku
 - **Archivy:** kde hledat a jak fungují prohlížeče – SOA Praha (eBadatelna), SOA Třeboň (DigiArchiv), Litoměřice, Zámrsk, Plzeň (Porta fontium), Opava, Brno (Actapublica), SOkA, slovenské matriky na FamilySearch.
 - **Vojenské prameny:** Databáze legionářů VÚA–VHA, legionářské osobní spisy, žádost přes PDF formulář, co znamenají kódy na kartách.
 - **Čtení zápisů:** poznámky na okraji (sňatky, přestupy mezi církvemi, legitimace), nemanželské děti, dobové názvy míst a povolání, typické chyby v přepisech.
-- **Orchestrace agentů:** hlavní agent (silnější model, Opus) plánuje a kontroluje, čtecí subagenti (levnější model, Sonnet) v Chromu procházejí digitalizované matriky a stahují originály. Hlavní agent každý zápis znovu přečte a ověří, než ho zapíše do rodokmenu.
+- **Strojový přístup k archivům:** nástroje bez prohlížeče a bez přihlášení pro SOA Praha (eBadatelna), SOA Třeboň, SOA Plzeň (Porta fontium), SOA Zámrsk (ARON), AHMP, snímky z Litoměřic a Opavy, pražské policejní přihlášky a noviny – převzato z [sarsonj/rodokmen-skill](https://github.com/sarsonj/rodokmen-skill) (MIT).
+- **Orchestrace agentů:** hlavní agent (silnější model, Opus) plánuje a kontroluje, čtecí subagenti (levnější model, Sonnet) procházejí digitalizované matriky nástroji (záložně v Chromu) a stahují originály. Hlavní agent každý zápis znovu přečte a ověří, než ho zapíše do rodokmenu.
 - **Souřadnice domů:** skript pro Mapy.com API dohledá souřadnice podle čísla popisného a ohlídá záměnu s čísly orientačními a místními částmi (API klíč zdarma na [developer.mapy.com](https://developer.mapy.com/account/projects)).
 - **Gramps:** doplňování nových údajů do exportu ve formátu Gramps XML (`.gramps`) s citacemi zdrojů, validace proti DTD, rodné a vdané jméno, osvojení, nemanželské děti.
 
@@ -34,7 +35,7 @@ tmp=$(mktemp -d) && git -C "$tmp" clone https://github.com/midlan/czech-genealog
 
 Repozitář se naklonuje do prázdné dočasné složky, takže příkaz funguje bez ohledu na to, jak git pojmenovává klonované složky. Po zkopírování se dočasná složka smaže.
 
-Pro práci s archivy spusťte Claude Code s propojeným Chromem (`claude --chrome` nebo příkaz `/chrome`), jako hlavní model zvolte Opus (`/model`) a v archivech se přihlaste sami. Čtecí subagenti běží na modelu Sonnet. Paralelně doporučujeme nejvýš 2–3 subagenty, každý ve vlastní záložce; při potížích přepněte na sekvenční běh.
+Nástroje pro archivy potřebují Python 3 a [ImageMagick](https://imagemagick.org) (Windows: `winget install ImageMagick.ImageMagick`). Chrome (`claude --chrome` nebo příkaz `/chrome`) je potřeba jen pro portály bez nástroje (MZA Brno, vyhledání knihy v Litoměřicích a Opavě, FamilySearch); přihlašujete se vždy sami. Jako hlavní model zvolte Opus (`/model`). Čtecí subagenti běží na modelu Sonnet. Paralelně doporučujeme nejvýš 2–3 subagenty, každý ve vlastní záložce; při potížích přepněte na sekvenční běh.
 
 ## Použití
 
@@ -54,7 +55,8 @@ skills/
     ├── references/
     │   └── farnosti.md   # ověřená přiřazení obcí k farnostem a knihám
     └── scripts/
-        └── souradnice_mapy.py  # souřadnice domů podle čp. přes Mapy.com API
+        ├── souradnice_mapy.py  # souřadnice domů podle čp. přes Mapy.com API
+        └── archivy/            # nástroje pro archivy bez prohlížeče (z sarsonj/rodokmen-skill, MIT)
 agents/
 └── archive-reader.md     # čtecí subagent (Sonnet) pro procházení archivů
 ```
@@ -62,3 +64,7 @@ agents/
 ## Upozornění
 
 Skill obsahuje praktické postupy, nikoli právní radu. Ceníky, provoz badatelen a podmínky archivů se mohou měnit – ověřujte je na webech příslušných institucí. Kopie archiválií slouží obvykle jen ke studijním účelům; řiďte se podmínkami jednotlivých archivů.
+
+## Poděkování
+
+Nástroje ve složce `skills/czech-genealogy/scripts/archivy/` pocházejí z projektu [rodokmen-skill](https://github.com/sarsonj/rodokmen-skill) Jindřicha Šaršona (licence MIT, text v `scripts/archivy/LICENSE-rodokmen-skill`). Opravy nástrojů prosím hlaste přednostně tam.
