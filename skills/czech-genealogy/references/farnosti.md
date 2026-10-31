@@ -13,6 +13,7 @@ Obec často nemá vlastní knihu – hledej farnost a v tabulce knih sloupec „
 | Sloveč | Králův Městec – Městec Králové 20/21 (narození Sloveč 1839–1902), 25 (sňatky Sloveč + Střihov) | |
 | Vinice (u Králova Městce) | Králův Městec – Městec Králové 40 (sňatky jen Vinice 1877–1949) | |
 | Mečíř | Bošín – katolická narození online jen do 1862 (Bošín 02, 06); sňatky Bošín 15 (Mečíř 1866–1949); evangelíci Bošín-ev 08 | |
+| Vestec (okres Nymburk) | Chleby – sňatky Chleby 19 (Vestec 1837–1880, zápisy do 1881), Chleby 22 (Chleby a Vestec 1837–1921, Vestec od 1881); index sňatků Chleby 25 (tom IX = Chleby 19) | |
 | Čejetičky, Neuberk | Mladá Boleslav 70 (1864–1886), 74 (1886–1904), 75 (1904–1913) | po 1913 v knihách Mladé Boleslavi |
 | Čejetice | Mladá Boleslav 76 (1882–1915) | |
 | Mladá Boleslav – Podolec, Staré a Nové Město | městské knihy, např. Mladá Boleslav 20 (narození 1851–1861) | |
